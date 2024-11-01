@@ -282,25 +282,38 @@
         </div>
     </div>
 
-   <script>
+  <script>
     function updateCountdown() {
-        const eventDate = moment('2024-12-08T17:00:00-05:00'); // 5 PM EST on Dec 8, 2024
-        const now = moment();
-        const duration = moment.duration(eventDate.diff(now));
+        // Set the target date and time for the event (Dec 8, 2024, at 5 PM)
+        const eventDate = new Date("December 8, 2024 17:00:00").getTime();
         
-        const days = Math.floor(duration.asDays());
-        const hours = duration.hours();
-        const minutes = duration.minutes();
-        const seconds = duration.seconds();
+        // Get the current date and time
+        const now = new Date().getTime();
         
-        document.getElementById('countdown').innerHTML = `
+        // Calculate the time remaining
+        const timeRemaining = eventDate - now;
+        
+        // Convert time into days, hours, minutes, and seconds
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        
+        // Display the countdown
+        document.getElementById("countdown").innerHTML = `
             🎄 Time Until The Holiday Extravaganza 🎄<br>
             ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
         `;
+        
+        // If the countdown is over, display a message
+        if (timeRemaining < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown").innerHTML = "🎉 The event has started! 🎉";
+        }
     }
 
     // Update the countdown every second
-    setInterval(updateCountdown, 1000);
+    const countdownInterval = setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
