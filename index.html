@@ -68,26 +68,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        .header img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            border: 3px solid var(--holiday-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .countdown {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-            border-top: 2px solid var(--holiday-gold);
-            border-bottom: 2px solid var(--holiday-gold);
-            background: linear-gradient(45deg, #1a472a, #2a623d);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -119,19 +99,42 @@
             padding-bottom: 0.5rem;
         }
 
-        .maps {
+        .venue-locations {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .map {
-            aspect-ratio: 16/9;
-            width: 100%;
-            border: 2px solid var(--holiday-gold);
+        .venue-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            text-align: center;
+            border: 1px solid var(--holiday-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .venue-card h3 {
+            color: var(--holiday-gold);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .venue-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--holiday-gold);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .venue-card a:hover {
+            background: var(--holiday-gold);
+            color: #0a2f1d;
+            text-shadow: none;
         }
 
         .holiday-decoration {
@@ -216,14 +219,6 @@
         }
     </script>
 
-    <div class="header">
-        <img src="banner.jpg" alt="Don't Call It a Wedding Banner" />
-    </div>
-
-    <div class="countdown" id="countdown">
-        Loading countdown...
-    </div>
-
     <div class="container">
         <div class="holiday-decoration holly-left">🎄</div>
         <div class="holiday-decoration holly-right">🎄</div>
@@ -276,31 +271,25 @@
         </div>
 
         <h2 style="color: var(--holiday-gold); text-align: center;">🎄 Venue Locations 🎄</h2>
-        <div class="maps">
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.763334044367!2d-74.00459538459557!3d40.72874997932946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598f7ec5ff37%3A0x5fcae19e131c51bb!2sThe%20Farm%20Soho!5e0!3m2!1sen!2sus!4v1635161234567!5m2!1sen!2sus"></iframe>
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8876961439883!2d-73.98637538459563!3d40.72634897932984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599f3a3671d9%3A0x9229d42527d73ab7!2sCadence!5e0!3m2!1sen!2sus!4v1635161234567!5m2!1sen!2sus"></iframe>
+        <div class="venue-locations">
+            <div class="venue-card">
+                <h3>🎄 The Ceremony</h3>
+                <p><strong>The Farm SoHo</strong></p>
+                <a href="https://maps.google.com/?q=The+Farm+Soho+447+Broadway+New+York+NY+10013" target="_blank">
+                    447 Broadway, 2nd Floor<br>
+                    New York, NY 10013
+                </a>
+            </div>
+            
+            <div class="venue-card">
+                <h3>🎅 The Reception</h3>
+                <p><strong>Cadence</strong></p>
+                <a href="https://maps.google.com/?q=Cadence+122+E+7th+St+New+York+NY+10009" target="_blank">
+                    122 E 7th St<br>
+                    New York, NY 10009
+                </a>
+            </div>
         </div>
     </div>
-
-    <script>
-        function updateCountdown() {
-            const eventDate = new Date('2024-12-08T17:00:00-05:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = eventDate - now;
-            
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').innerHTML = `
-                🎄 Time Until The Holiday Extravaganza 🎄<br>
-                ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
-            `;
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
 </body>
 </html>
