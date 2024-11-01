@@ -284,32 +284,27 @@
 
   <script>
     function updateCountdown() {
-        const eventDate = new Date("2024-12-08T22:00:00Z").getTime(); // Adjusted for UTC
-        const now = new Date().getTime();
-        const timeRemaining = eventDate - now;
+        const targetDate = new Date("2024-12-08T17:00:00");
+        const currentDate = new Date();
+        const difference = targetDate - currentDate;
 
-        // Calculate days, hours, minutes, seconds
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Update HTML
-        document.getElementById("countdown").innerHTML = `
-            🎄 Time Until The Holiday Extravaganza 🎄<br>
-            ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
-        `;
-
-        // End countdown when time is up
-        if (timeRemaining < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById("countdown").innerHTML = "🎉 The event has started! 🎉";
+        if (difference < 0) {
+            document.getElementById('countdown').innerHTML = "🎄 The Holiday Extravaganza has begun! 🎄";
+            return;
         }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        document.getElementById('countdown').innerHTML = 
+            `🎄 Time Until The Holiday Extravaganza 🎄<br>
+             ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
     }
 
-    // Initialize countdown and set interval
     updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
