@@ -282,25 +282,25 @@
         </div>
     </div>
 
-    <script>
-        function updateCountdown() {
-            const eventDate = new Date('2024-12-08T17:00:00-05:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = eventDate - now;
-            
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').innerHTML = `
-                🎄 Time Until The Holiday Extravaganza 🎄<br>
-                ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
-            `;
-        }
+   <script>
+    function updateCountdown() {
+        const eventDate = moment('2024-12-08T17:00:00-05:00'); // 5 PM EST on Dec 8, 2024
+        const now = moment();
+        const duration = moment.duration(eventDate.diff(now));
+        
+        const days = Math.floor(duration.asDays());
+        const hours = duration.hours();
+        const minutes = duration.minutes();
+        const seconds = duration.seconds();
+        
+        document.getElementById('countdown').innerHTML = `
+            🎄 Time Until The Holiday Extravaganza 🎄<br>
+            ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+        `;
+    }
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
