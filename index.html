@@ -77,6 +77,16 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
+        .countdown {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            border-top: 2px solid var(--holiday-gold);
+            border-bottom: 2px solid var(--holiday-gold);
+            background: linear-gradient(45deg, #1a472a, #2a623d);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
 
         .container {
             max-width: 800px;
@@ -207,10 +217,12 @@
     </script>
 
     <div class="header">
-        <img src="IMG_1459.jpeg" alt="Don't Call It a Wedding Banner" />
+        <img src="banner.jpg" alt="Don't Call It a Wedding Banner" />
     </div>
 
-  
+    <div class="countdown" id="countdown">
+        Loading countdown...
+    </div>
 
     <div class="container">
         <div class="holiday-decoration holly-left">🎄</div>
@@ -270,36 +282,25 @@
         </div>
     </div>
 
- <!-- Add this script at the end of the HTML file, right before the closing </body> tag -->
-<script>
-    function updateCountdown() {
-        // Set the target date and time for the event (Dec 8, 2024, at 5 PM EST)
-        const eventDate = new Date("2024-12-08T17:00:00-05:00").getTime();
-        const now = new Date().getTime();
-        const timeRemaining = eventDate - now;
-
-        // Convert time into days, hours, minutes, and seconds
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Display the countdown
-        document.getElementById("countdown").innerHTML = `
-            🎄 Time Until The Holiday Extravaganza 🎄<br>
-            ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
-        `;
-
-        // If the countdown is over, display a message
-        if (timeRemaining < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById("countdown").innerHTML = "🎉 The event has started! 🎉";
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date('2024-12-08T17:00:00-05:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = `
+                🎄 Time Until The Holiday Extravaganza 🎄<br>
+                ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+            `;
         }
-    }
 
-    // Call updateCountdown initially and set an interval to update every second
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
-</script>
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
