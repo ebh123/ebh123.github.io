@@ -282,29 +282,6 @@
         </div>
     </div>
 
-  <script>
-    function updateCountdown() {
-        const targetDate = new Date("2024-12-08T17:00:00");
-        const currentDate = new Date();
-        const difference = targetDate - currentDate;
-
-        if (difference < 0) {
-            document.getElementById('countdown').innerHTML = "🎄 The Holiday Extravaganza has begun! 🎄";
-            return;
-        }
-
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((difference / (1000 * 60)) % 60);
-        const seconds = Math.floor((difference / 1000) % 60);
-
-        document.getElementById('countdown').innerHTML = 
-            `🎄 Time Until The Holiday Extravaganza 🎄<br>
-             ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-</script>
+ 
 </body>
 </html>
