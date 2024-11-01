@@ -270,6 +270,36 @@
         </div>
     </div>
 
- 
+ <!-- Add this script at the end of the HTML file, right before the closing </body> tag -->
+<script>
+    function updateCountdown() {
+        // Set the target date and time for the event (Dec 8, 2024, at 5 PM EST)
+        const eventDate = new Date("2024-12-08T17:00:00-05:00").getTime();
+        const now = new Date().getTime();
+        const timeRemaining = eventDate - now;
+
+        // Convert time into days, hours, minutes, and seconds
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Display the countdown
+        document.getElementById("countdown").innerHTML = `
+            🎄 Time Until The Holiday Extravaganza 🎄<br>
+            ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+        `;
+
+        // If the countdown is over, display a message
+        if (timeRemaining < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown").innerHTML = "🎉 The event has started! 🎉";
+        }
+    }
+
+    // Call updateCountdown initially and set an interval to update every second
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
