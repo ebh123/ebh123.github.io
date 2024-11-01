@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Call It a Wedding: A Holiday Extravaganza</title>
+    <style>
+        :root {
+            --gradient-bg: linear-gradient(135deg, #c70012, #006400, #c70012);
+            --holiday-gold: #ffd700;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #0a2f1d;
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Snowfall Animation */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10vh) translateX(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) translateX(10px) rotate(360deg);
+            }
+        }
+
+        .snowflake {
+            position: fixed;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            z-index: 1;
+            animation: snowfall linear infinite;
+        }
+
+        .header {
+            background: var(--gradient-bg);
+            padding: 2rem;
+            text-align: center;
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            border-bottom: 3px solid var(--holiday-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cpath fill='%23ffffff10' d='M25,0 L50,25 L25,50 L0,25 Z'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 3px solid var(--holiday-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .countdown {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            border-top: 2px solid var(--holiday-gold);
+            border-bottom: 2px solid var(--holiday-gold);
+            background: linear-gradient(45deg, #1a472a, #2a623d);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .faq {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--holiday-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .faq h2 {
+            color: var(--holiday-gold);
+            margin-top: 0;
+            text-align: center;
+            font-size: 2em;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .faq h3 {
+            color: #c70012;
+            border-bottom: 1px solid var(--holiday-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        .maps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .map {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border: 2px solid var(--holiday-gold);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .holiday-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .holly-left {
+            left: 10px;
+            top: 50%;
+        }
+
+        .holly-right {
+            right: 10px;
+            top: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .holiday-decoration {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Twinkling stars effect */
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            animation: twinkle 1.5s infinite;
+        }
+
+        a {
+            color: var(--holiday-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--holiday-gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Add 50 snowflakes -->
+    <script>
+        for (let i = 0; i < 50; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.innerHTML = '❄';
+            document.body.appendChild(snowflake);
+        }
+
+        // Add twinkling stars
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(star);
+        }
+    </script>
+
+    <div class="header">
+        <img src="banner.jpg" alt="Don't Call It a Wedding Banner" />
+    </div>
+
+    <div class="countdown" id="countdown">
+        Loading countdown...
+    </div>
+
+    <div class="container">
+        <div class="holiday-decoration holly-left">🎄</div>
+        <div class="holiday-decoration holly-right">🎄</div>
+        
+        <div class="faq">
+            <h2>❄️ FAQs (Because You're Probably Wondering) ❄️</h2>
+            
+            <h3>🎁 1. Do you have a hotel block, or are we winging it?</h3>
+            <ul>
+                <li><strong>Hotel Block:</strong> Hotel Indigo NYC Financial District (120 Water St, New York, NY 10005)</li>
+                <li><strong>Booking Link:</strong> <a href="http://bit.ly/3NLu9Bs" target="_blank">http://bit.ly/3NLu9Bs</a></li>
+                <li><strong>Room Block & Rates:</strong></li>
+                <li><strong>Standard King Rooms:</strong> $389 per night (8 rooms available each night from Friday, 12/6 through Sunday, 12/8; 6 rooms available on Monday, 12/9)</li>
+                <li><strong>Standard 2 Queens:</strong> $409 per night (2 rooms available each night from Friday, 12/6 through Sunday, 12/8; 1 room available on Monday, 12/9)</li>
+            </ul>
+            <p><em>This block is first come, first serve! The cut-off date for reservations is 5:00 p.m. local time on 11/15/2024.</em></p>
+            <p><em>If you're flying solo and want to share a room, text us! We'll do our best to play matchmaker (of the roommate variety).</em></p>
+
+            <h3>🎄 2. Where is the "not a wedding"?</h3>
+            <ul>
+                <li><strong>Location:</strong> The Farm SoHo, NYC (447 Broadway, 2nd Floor, New York, NY 10013)</li>
+                <li><strong>Time:</strong> Champagne reception at 5 p.m., ceremony right after.</li>
+            </ul>
+            <p><em>Yes, champagne first, then vows. You're welcome.</em></p>
+
+            <h3>🎅 3. If there's "not a wedding" then there must be a "not a reception," right?</h3>
+            <ul>
+                <li><strong>Location:</strong> Cadence (122 E 7th St, New York, NY 10009)</li>
+                <li><strong>Time:</strong> 7–10 p.m.</li>
+            </ul>
+            <p><em>Oh, you mean our official holiday party? Yes, that's right—our gift to you is a festive evening with heavy heavy hors d'oeuvres—plant-based, like us—and an open bar with beer, wine, and fake cocktails made with (stronger) wine. And since Cadence doesn't have hard liquor…we're not saying you can sneak in a flask…but we're definitely not saying you can't either.</em></p>
+
+            <h3>⛄ 4. Are there any other events planned for the weekend?</h3>
+            <p><em>No official schedule, but we'll be in NYC starting Dec 5 and for a whole week after the "not a wedding." As per usual, we will be attempting to bankrupt ourselves by seeing every Broadway show possible. If you want in on our theater marathon, text us ASAP. Otherwise, we'd still love to hang out as schedules and budgets allow!</em></p>
+
+            <h3>🎀 5. Is there a dress code, or...?</h3>
+            <p><em>Not a formal affair.</em> But we're in tuxes, so let's all avoid looking like we got lost on the way to the laundromat, shall we?</p>
+
+            <h3>🎁 6. So, what about gifts?</h3>
+            <p><em>Please, no gifts.</em> We already have too many things and can barely manage them as it is. Your presence truly is the greatest gift—and it won't require us to find more closet space.</p>
+
+            <h3>❄️ 7. What's the weather like?</h3>
+            <p>It's December in NYC, so expect chilly temps. Bundle up for getting around the city, but don't worry—<strong>all events are indoors</strong>, so you won't need a parka for the ceremony or Cadence.</p>
+
+            <h3>🚕 8. Transportation?</h3>
+            <p><strong>Uber or Public Transit:</strong> NYC's finest options. Trust us, leave the car at home; parking here is like playing Tetris with skyscrapers.</p>
+
+            <h3>📱 9. Can I ask you more questions?</h3>
+            <p><em>Yes, you can text either of us if something's still unclear. Just make sure you've scrolled through this FAQ first—we believe in you.</em></p>
+        </div>
+
+        <h2 style="color: var(--holiday-gold); text-align: center;">🎄 Venue Locations 🎄</h2>
+        <div class="maps">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.763334044367!2d-74.00459538459557!3d40.72874997932946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598f7ec5ff37%3A0x5fcae19e131c51bb!2sThe%20Farm%20Soho!5e0!3m2!1sen!2sus!4v1635161234567!5m2!1sen!2sus"></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8876961439883!2d-73.98637538459563!3d40.72634897932984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599f3a3671d9%3A0x9229d42527d73ab7!2sCadence!5e0!3m2!1sen!2sus!4v1635161234567!5m2!1sen!2sus"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date('2024-12-08T17:00:00-05:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = `
+                🎄 Time Until The Holiday Extravaganza 🎄<br>
+                ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+            `;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
